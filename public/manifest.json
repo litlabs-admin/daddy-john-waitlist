@@ -1,0 +1,21 @@
+{
+  "name": "Daddy John - Waitlist",
+  "short_name": "Daddy John",
+  "description": "Join the waitlist for Daddy John - No Red Flags. Just Red Roses.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f0f",
+  "theme_color": "#8b5cf6",
+  "icons": [
+    {
+      "src": "/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/logo2.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+} 
