@@ -101,28 +101,43 @@ const submitButton = document.getElementById('submit-button');
 const toast = document.getElementById('toast');
 
 // --- FORM SUBMISSION LOGIC ---
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('waitlist-form');
-    if (form) {
-        form.addEventListener('submit', async function (e) {
-            e.preventDefault();
 
-            // Optionally, collect form data
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
+if (form) {
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Joining...';
+        }
 
-            // TODO: Add your Supabase or backend submission logic here
-            // Example:
-            // const { data, error } = await supabase.from('waitlist').insert([{ name, email }]);
-            // if (!error) {
-            //     window.location.href = 'thank-you.html';
-            // }
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
 
-            // For now, just redirect after a short delay
+        try {
+            // This is the active code to insert data into Supabase
+            const { data, error } = await supabase
+                .from('waitlist')
+                .insert([{ name, email }]);
+
+            if (error) {
+                // If Supabase returns an error, show it to the user
+                alert('Error: ' + error.message);
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = `Join the waitlist <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>`;
+                }
+                throw error; // Stop the process
+            }
+
+            // If there is NO error, redirect to the thank you page
             window.location.href = 'thank-you.html';
-        });
-    }
-});
+
+        } catch (error) {
+            console.error('Submission Error:', error.message);
+        }
+    });
+}
 
 // --- NOTIFICATION TOAST FUNCTION ---
 function showToast(message, type = 'success') {
