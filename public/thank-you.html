@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're On The List!</title>
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 relative">
+    <!-- Background Effects (Same as index.html) -->
+    <canvas id="starfield" class="absolute inset-0 z-0"></canvas>
+    <div class="aurora-bg"></div>
+    <div class="particles-container">
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    </div>
+
+    <!-- Top Left Logo -->
+    <div class="absolute top-12 left-15 z-20 fade-in">
+        <img src="images/logo3.png" alt="Daddy John Logo" class="h-30 md:h-40">
+    </div>
+    <!-- Main Content Container -->
+    <div class="relative z-10 w-full max-w-lg text-center">
+        
+        <!-- Headline Section -->
+        <div class="mb-4 fade-in text-center" style="animation-delay: 0.2s;">
+            <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight whitespace-nowrap inline-block -translate-x-12 transform">
+                Welcome To The Love List 🔥
+            </h1>
+        </div>
+        
+        <!-- Container for the subheading -->
+        <div class="mb-8 fade-in text-center" style="animation-delay: 0.4s;">
+            <p class="serif-italic text-2xl md:text-3xl text-gray-300 mt-2">
+                Romance Reloaded. Coming Soon.
+            </p>
+        </div>
+        
+        
+
+        <!-- Confirmation Card -->
+        <div class="bg-[#1c1d21]/80 backdrop-blur-sm border-2 border-[#2a2b2f] p-8 rounded-2xl max-w-sm mx-auto fade-in" style="animation-delay: 0.4s;">
+            <h2 class="text-2xl font-bold text-white mb-2">✨ Coming Soon</h2>
+            <p class="text-gray-400">We'll Notify You As Soon As Access Opens</p>
+            
+        </div>
+    </div>
+
+    <!-- External JavaScript for animations -->
+    <script src="js/animations.js"></script>
+</body>
+</html>

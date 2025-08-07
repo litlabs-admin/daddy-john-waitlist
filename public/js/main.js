@@ -5,12 +5,15 @@ const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
 // --- MOUSE-TRACKING FOR AURORA ---
 const aurora = document.querySelector('.aurora-bg');
-document.addEventListener('mousemove', (e) => {
-    const { clientX, clientY } = e;
-    const x = Math.round((clientX / window.innerWidth) * 100);
-    const y = Math.round((clientY / window.innerHeight) * 100);
-    aurora.style.transform = `translate(${x - 50}%, ${y - 50}%)`;
-});
+if (aurora) {
+    document.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const x = Math.round((clientX / window.innerWidth) * 100);
+        const y = Math.round((clientY / window.innerHeight) * 100);
+        aurora.style.transform = `translate(${x - 50}%, ${y - 50}%)`;
+    });
+}
+
 
 // --- STARFIELD ANIMATION ---
 const canvas = document.getElementById('starfield');
@@ -98,29 +101,26 @@ const submitButton = document.getElementById('submit-button');
 const toast = document.getElementById('toast');
 
 // --- FORM SUBMISSION LOGIC ---
-form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    submitButton.disabled = true;
-    submitButton.innerHTML = 'Joining...';
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('waitlist-form');
+    if (form) {
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
+            // Optionally, collect form data
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
 
-    try {
-        const { data, error } = await supabase
-            .from('waitlist')
-            .insert([{ name: name, email: email, created_at: new Date() }]);
+            // TODO: Add your Supabase or backend submission logic here
+            // Example:
+            // const { data, error } = await supabase.from('waitlist').insert([{ name, email }]);
+            // if (!error) {
+            //     window.location.href = 'thank-you.html';
+            // }
 
-        if (error) throw error;
-
-        showToast('Success! You are on the list.', 'success');
-        form.reset();
-    } catch (error) {
-        console.error('Error:', error.message);
-        showToast('Oops! Something went wrong.', 'error');
-    } finally {
-        submitButton.disabled = false;
-        submitButton.innerHTML = `Join the waitlist <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>`;
+            // For now, just redirect after a short delay
+            window.location.href = 'thank-you.html';
+        });
     }
 });
 
